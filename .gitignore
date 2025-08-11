@@ -1,0 +1,14 @@
+# Ignore DDEV configuration
+.ddev/
+
+# Ignore Composer dependencies
+/vendor/
+
+# Ignore Drupal private files and settings
+/web/sites/*/settings*.php
+/web/sites/*/services*.yml
+/web/sites/*/files/
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
