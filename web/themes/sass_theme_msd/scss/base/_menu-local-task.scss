@@ -1,0 +1,31 @@
+.primary-tabs {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  list-style: none;
+  border-bottom: 2px solid black;
+  background: white;
+  gap: 1rem;
+  padding-top: 4px;
+  li a {
+    padding: 8px 12px;
+    text-decoration: none;
+    color: black;
+    &.is-active {
+      display: inline-block;
+      color: white;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+      background: $black-color;
+    }
+  }
+
+  @include tablet {
+    position: unset;
+    flex-direction: row;
+    width: 100%;
+  }
+}

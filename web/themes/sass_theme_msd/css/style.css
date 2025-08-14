@@ -1,0 +1,716 @@
+@charset "UTF-8";
+/* One should use it like this
+
+.example {
+  font-size: calculate-values (12, 20, 768, 1280);
+*/
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-Black.otf);
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-ExtraBold.otf);
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-Bold.otf);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-SemiBold.otf);
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-Medium.otf);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-Regular.otf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-Light.otf);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Montserrat;
+  src: url(../fonts/Montserrat_otf/Montserrat-ExtraLight.otf);
+  font-weight: 200;
+  font-style: normal;
+}
+/******************/
+/******************/
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-Light.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-LightItalic.ttf);
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-Italic.ttf);
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-Medium.ttf);
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-MediumItalic.ttf);
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-SemiBold.ttf);
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-SemiBoldItalic.ttf);
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-BoldItalic.ttf);
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-ExtraBold.ttf);
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: Open-Sans;
+  src: url(../fonts/Open_Sans/OpenSans-ExtraBoldItalic.ttf);
+  font-weight: 800;
+  font-style: italic;
+}
+/******************/
+/******************/
+@font-face {
+  font-family: Roboto-Condensed;
+  src: url(../fonts/Roboto_Condensed/RobotoCondensed-Light.ttf);
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: Roboto-Condensed;
+  src: url(../fonts/Roboto_Condensed/RobotoCondensed-LightItalic.ttf);
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: Roboto-Condensed;
+  src: url(../fonts/Roboto_Condensed/RobotoCondensed-Regular.ttf);
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: Roboto-Condensed;
+  src: url(../fonts/Roboto_Condensed/RobotoCondensed-Italic.ttf);
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: Roboto-Condensed;
+  src: url(../fonts/Roboto_Condensed/RobotoCondensed-Bold.ttf);
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: Roboto-Condensed;
+  src: url(../fonts/Roboto_Condensed/RobotoCondensed-BoldItalic.ttf);
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: Play-Fair-Display;
+  src: url(../fonts/PlayFairDisplay/PlayfairDisplay-Regular.ttf);
+  font-weight: 400;
+  font-style: italic;
+}
+@font-face {
+  font-family: Play-Fair-Display;
+  src: url(../fonts/PlayFairDisplay/PlayfairDisplay-Medium.ttf);
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: Play-Fair-Display;
+  src: url(../fonts/PlayFairDisplay/PlayfairDisplay-SemiBold.ttf);
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: Play-Fair-Display;
+  src: url(../fonts/PlayFairDisplay/PlayfairDisplay-Bold.ttf);
+  font-weight: 700;
+  font-style: italic;
+}
+@font-face {
+  font-family: Play-Fair-Display;
+  src: url(../fonts/PlayFairDisplay/PlayfairDisplay-ExtraBold.ttf);
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: Play-Fair-Display;
+  src: url(../fonts/PlayFairDisplay/PlayfairDisplay-Black.ttf);
+  font-weight: 900;
+  font-style: italic;
+}
+/* stylelint-disable */
+/* stylelint-enable */
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+img, picture, video, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, textarea, button, select {
+  font: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+.slick-initialized {
+  overflow: hidden;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container, .info-message, .error-message, .success-message {
+  padding-inline: 24px;
+  margin-inline: auto;
+}
+@media (min-width: 768px) {
+  .container, .info-message, .error-message, .success-message {
+    padding-inline: 1rem;
+  }
+}
+@media (min-width: 1280px) {
+  .container, .info-message, .error-message, .success-message {
+    max-width: 1180px;
+  }
+}
+
+.social-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.facebook {
+  background-image: url("../icons/social-icons/rounded/facebook.svg");
+}
+
+.youtube {
+  background-image: url("../icons/social-icons/rounded/youtube.svg");
+}
+
+.twitter {
+  background-image: url("../icons/social-icons/rounded/twitter.svg");
+}
+
+.pinterest {
+  background-image: url("../icons/social-icons/rounded/pinterest.svg");
+}
+
+.instagram {
+  background-image: url("../icons/social-icons/rounded/instagram.svg");
+}
+
+.linkedin {
+  background-image: url("../icons/social-icons/rounded/linkedin.svg");
+}
+
+.googleplus {
+  background-image: url("../icons/social-icons/rounded/googleplus.svg");
+}
+
+.whatsapp {
+  background-image: url("../icons/social-icons/rounded/whatsapp.svg");
+}
+
+.snapchat {
+  background-image: url("../icons/social-icons/rounded/snapchat.svg");
+}
+
+.feed {
+  background-image: url("../icons/social-icons/rounded/feed.svg");
+}
+
+.flipboard {
+  background-image: url("../icons/social-icons/rounded/flipboard.svg");
+}
+
+.messenger {
+  background-image: url("../icons/social-icons/rounded/messenger.svg");
+}
+
+.reddit {
+  background-image: url("../icons/social-icons/rounded/reddit.svg");
+}
+
+.skype {
+  background-image: url("../icons/social-icons/rounded/skype.svg");
+}
+
+.success-message {
+  position: fixed;
+  z-index: 50;
+  top: 80px;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 3.5rem;
+  padding-left: 6rem;
+  color: black;
+  border: 2px solid #cfe8d3;
+  border-radius: 8px;
+  background-color: #f1f8f4;
+}
+.success-message::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  content: "✓";
+  transform: translate(30%, -50%);
+  color: #51dc6c;
+  border: 10px solid #51dc6c;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 1.5rem;
+}
+
+.error-message {
+  position: fixed;
+  z-index: 50;
+  top: 80px;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 3.5rem;
+  padding-left: 6rem;
+  color: black;
+  border: 2px solid #ecc1b6;
+  border-radius: 8px;
+  background-color: #faeeea;
+}
+.error-message::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  content: "❌";
+  transform: translate(30%, -50%);
+  color: #fb5858;
+  border: 10px solid #fb5858;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 11px;
+}
+
+.info-message {
+  position: fixed;
+  z-index: 50;
+  top: 80px;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 3.5rem;
+  padding-left: 6rem;
+  color: black;
+  border: 2px solid #ffd56c;
+  border-radius: 8px;
+  background-color: #fff9c4;
+}
+.info-message::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  content: "!";
+  transform: translate(30%, -50%);
+  color: #e9ba43;
+  border: 10px solid #e9ba43;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.message-wrapper {
+  position: relative;
+}
+.message-wrapper .cross {
+  position: absolute;
+  top: -8px;
+  right: 4px;
+  cursor: pointer;
+  color: gray;
+  font-size: 1.5rem;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+.menubar {
+  height: 110px;
+  background-color: white;
+  border-bottom: 1px solid gray;
+  display: flex;
+  align-items: center;
+}
+.menubar .menu-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 40px;
+}
+@media (min-width: 768px) {
+  .menubar .menu-wrapper {
+    gap: 80px;
+  }
+}
+.menubar .menu-wrapper .logo-link-wrapper img {
+  width: 237px;
+  height: 75px;
+  object-fit: contain;
+}
+.menubar .menu-wrapper .menu-main-block {
+  position: absolute;
+  top: 110px;
+  right: 0;
+  width: 0;
+  background-color: white;
+  z-index: 10;
+  height: calc(100vh - 110px);
+  transition: all 0.3s ease-in-out;
+  overflow-x: hidden;
+  -webkit-box-shadow: -16px 27px 57px -8px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: -16px 27px 57px -8px rgba(0, 0, 0, 0.75);
+  box-shadow: -16px 27px 57px -8px rgba(0, 0, 0, 0.75);
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block {
+    justify-self: end;
+    overflow: unset;
+  }
+}
+.menubar .menu-wrapper .menu-main-block.menu-opened {
+  width: 360px;
+}
+@media (min-width: 768px) {
+  .menubar .menu-wrapper .menu-main-block.menu-opened {
+    width: 400px;
+  }
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block {
+    display: block;
+    position: unset;
+    background: unset;
+    top: unset;
+    right: unset;
+    width: unset;
+    height: unset;
+    transition: unset;
+    transform: unset;
+    -webkit-box-shadow: unset;
+    -moz-box-shadow: unset;
+    box-shadow: unset;
+  }
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items {
+  overflow-x: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-direction: column;
+  display: flex;
+  align-items: start;
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block > .menu-items {
+    flex-direction: row;
+    align-items: center;
+    gap: 30px;
+    overflow: unset;
+  }
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item {
+  padding: 30px;
+  border-bottom: 1px solid rgb(164, 164, 164);
+  width: 100%;
+  position: relative;
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item {
+    width: unset;
+    padding: 0;
+    border-bottom: 0;
+  }
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item a {
+  color: #111010;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item a.is-active {
+  color: #738cd1;
+  font-weight: 700;
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item[child=yes] {
+  position: relative;
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item[child=yes]::after {
+  content: "";
+  background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="6" viewBox="0 0 11 6" fill="none"><path d="M1.07324 1L5.00259 4.92935" stroke="%23C23E3E" stroke-width="2" stroke-linecap="round"/><path d="M9.21973 1L5.29038 4.92935" stroke="%23C23E3E" stroke-width="2" stroke-linecap="round"/></svg>');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 12px;
+  height: 7px;
+  position: absolute;
+  top: 40px;
+  translate: -50%;
+  left: 50%;
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item[child=yes]::after {
+    top: 65px;
+    translate: -50% 0;
+  }
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item[child=yes] {
+    display: flex;
+    height: 100px;
+    align-items: center;
+  }
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item:hover > .menu-items {
+  display: block;
+  padding-top: 1rem;
+  padding-left: 2rem;
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item:hover > .menu-items {
+    padding: 8px 1rem;
+  }
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item .menu-items {
+  display: none;
+  padding: 0;
+  list-style: none;
+  background: white;
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item .menu-items {
+    position: absolute;
+    box-shadow: 1px 7px 17px -2px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 1px 7px 17px -2px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 1px 7px 17px -2px rgba(0, 0, 0, 0.75);
+    padding: 8px 1rem;
+    border-radius: 4px;
+    width: 200px;
+    top: 80px;
+  }
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item .menu-items > .menu-item {
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item .menu-items > .menu-item:hover {
+  border-bottom: 1px solid black;
+}
+.menubar .menu-wrapper .menu-main-block > .menu-items > .menu-item .menu-items > .menu-item:last-child {
+  border-bottom: 0;
+}
+.menubar .menu-wrapper .hamburger {
+  justify-self: flex-end;
+  cursor: pointer;
+}
+.menubar .menu-wrapper .hamburger svg {
+  width: 40px;
+  height: 40px;
+}
+.menubar .menu-wrapper .hamburger.closed-menu {
+  display: block;
+}
+@media (min-width: 1280px) {
+  .menubar .menu-wrapper .hamburger.closed-menu {
+    display: none;
+  }
+}
+
+.d-none {
+  display: none !important;
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+@media (min-width: 1280px) {
+  .overflow-hidden {
+    overflow: unset;
+  }
+}
+
+.overlay {
+  position: relative;
+}
+.overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  top: 110px;
+  width: 100%;
+  height: calc(100vh - 110px);
+  background-color: rgba(0, 0, 0, 0.75);
+}
+@media (min-width: 1280px) {
+  .overlay::after {
+    content: unset;
+  }
+}
+
+.pager {
+  margin-top: 52px;
+}
+.pager ul.pager__items {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  justify-content: end;
+}
+.pager ul.pager__items li.pager__item a {
+  text-decoration: none;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #333;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  border-radius: 50%;
+  background-color: white;
+  border: 1px solid #F1F1F1;
+}
+.pager ul.pager__items li.pager__item.is-active a {
+  background-color: #dc101b;
+  color: white;
+}
+
+.primary-tabs {
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  list-style: none;
+  border-bottom: 2px solid black;
+  background: white;
+  gap: 1rem;
+  padding-top: 4px;
+}
+.primary-tabs li a {
+  padding: 8px 12px;
+  text-decoration: none;
+  color: black;
+}
+.primary-tabs li a.is-active {
+  display: inline-block;
+  color: white;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  background: #0f1618;
+}
+@media (min-width: 768px) {
+  .primary-tabs {
+    position: unset;
+    flex-direction: row;
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

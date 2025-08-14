@@ -16,37 +16,57 @@
     ],
     "require": {
         "composer/installers": "^2.3",
+        "cweagans/composer-patches": "~1.0",
         "drupal/admin_toolbar": "^3.6",
+        "drupal/asset_injector": "^2.21",
+        "drupal/bef_select": "2.0.x-dev",
+        "drupal/better_exposed_filters": "^6.0",
         "drupal/commerce": "^3.1",
+        "drupal/content_access": "^2.1@RC",
         "drupal/core-composer-scaffold": "^11.2",
         "drupal/core-project-message": "^11.2",
         "drupal/core-recipe-unpack": "^11.2",
         "drupal/core-recommended": "^11.2",
+        "drupal/fullcalendar_view": "5.x-dev@dev",
         "drupal/inline_entity_form": "^3.0@RC",
-        "drush/drush": "^13.6"
+        "drush/drush": "^13.6",
+        "mglaman/composer-drupal-lenient": "^1.0"
     },
     "conflict": {
         "drupal/drupal": "*"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
         "allow-plugins": {
             "composer/installers": true,
-            "drupal/core-composer-scaffold": true,
-            "drupal/core-recipe-unpack": true,
-            "drupal/core-project-message": true,
-            "phpstan/extension-installer": true,
+            "cweagans/composer-patches": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
+            "drupal/core-composer-scaffold": true,
+            "drupal/core-project-message": true,
+            "drupal/core-recipe-unpack": true,
+            "mglaman/composer-drupal-lenient": true,
             "php-http/discovery": true,
-            "php-tuf/composer-integration": true
+            "php-tuf/composer-integration": true,
+            "phpstan/extension-installer": true
         },
         "sort-packages": true
     },
     "extra": {
+        "drupal-lenient": {
+            "allowed-list": ["drupal/bef_select", "drupal/better_exposed_filters"]
+        },
         "drupal-scaffold": {
             "locations": {
                 "web-root": "web/"
+            }
+        },
+        "patches": {
+            "drupal/bef_select": {
+                "Upgrade to BEF 7 (https://www.drupal.org/project/bef_select/issues/3484239)": "https://www.drupal.org/files/issues/2024-03-16/bef_select.2.0.0.rector.patch"
+            },
+            "drupal/better_exposed_filters": {
+                "Automated Drupal 11 compatibility fixes for better_exposed_filters (https://www.drupal.org/project/better_exposed_filters/issues/3428958)": "https://www.drupal.org/files/issues/2024-03-16/better_exposed_filters.6.0.3.rector.patch"
             }
         },
         "installer-paths": {
@@ -102,5 +122,6 @@
                 "      composer remove drupal/core-project-message"
             ]
         }
+       
     }
 }

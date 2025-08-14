@@ -1,0 +1,6 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Function acl_save_form not found\\.$#"
+			count: 1
+			path: src/Form/ContentAccessPageForm.php

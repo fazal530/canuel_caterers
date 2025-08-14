@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Styles for Content Access administration pages.
+ */
+
+.content_access-div {
+  float: left;
+  overflow: hidden;
+  width: 25%;
+  margin: 0;
+  padding: 0;
+}
+
+.content-access-page,
+.content-access-admin-settings {
+  position: static;
+}

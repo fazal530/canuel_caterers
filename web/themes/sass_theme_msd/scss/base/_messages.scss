@@ -1,0 +1,114 @@
+// STATUS MESSAGES
+
+.success-message {
+  @extend .container;
+  position: fixed;
+  z-index: 50;
+  top: 80px;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 3.5rem;
+  padding-left: 6rem;
+  color: black;
+  border: 2px solid #cfe8d3;
+  border-radius: 8px;
+  background-color: #f1f8f4;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    content: "✓";
+    transform: translate(30%, -50%);
+    color: #51dc6c;
+    border: 10px solid #51dc6c;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 1.5rem;
+  }
+}
+
+.error-message {
+  @extend .container;
+  position: fixed;
+  z-index: 50;
+  top: 80px;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 3.5rem;
+  padding-left: 6rem;
+  color: black;
+  border: 2px solid #ecc1b6;
+  border-radius: 8px;
+  background-color: #faeeea;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    content: "\274C";
+    transform: translate(30%, -50%);
+    color: #fb5858;
+    border: 10px solid #fb5858;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 11px;
+  }
+}
+
+.info-message {
+  @extend .container;
+  position: fixed;
+  z-index: 50;
+  top: 80px;
+  right: 0;
+  left: 0;
+  padding: 1.5rem 3.5rem;
+  padding-left: 6rem;
+  color: black;
+  border: 2px solid #ffd56c;
+  border-radius: 8px;
+  background-color: #fff9c4;
+
+  &::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    content: "!";
+    transform: translate(30%, -50%);
+    color: #e9ba43;
+    border: 10px solid #e9ba43;
+    border-radius: 50%;
+    background-color: white;
+    font-size: 22px;
+    font-weight: bold;
+  }
+}
+
+.message-wrapper {
+  position: relative;
+
+  .cross {
+    position: absolute;
+    top: -8px;
+    right: 4px;
+    cursor: pointer;
+    color: gray;
+    font-size: 1.5rem;
+  }
+}

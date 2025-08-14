@@ -1,0 +1,89 @@
+$mobile: 360;
+$tablet: 768;
+$tablet-lg: 834;
+$desktop-sm: 992;
+$desktop: 1280;
+$desktop-md: 1440;
+$desktop-lg: 1680;
+$desktop-xlg: 1920;
+
+// 390px
+@mixin mobile() {
+  @media (min-width: #{$mobile}px) {
+    @content;
+  }
+}
+
+// 768px
+@mixin tablet() {
+  @media (min-width: #{$tablet}px) {
+    @content;
+  }
+}
+
+// 834px
+@mixin tablet-lg() {
+  @media (min-width: #{$tablet-lg}px) {
+    @content;
+  }
+}
+
+// 992px
+@mixin desktop-sm() {
+  @media (min-width: #{$desktop-sm}px) {
+    @content;
+  }
+}
+
+// 1280px
+@mixin desktop() {
+  @media (min-width: #{$desktop}px) {
+    @content;
+  }
+}
+
+// 1440px
+@mixin desktop-md() {
+  @media (min-width: #{$desktop-md}px) {
+    @content;
+  }
+}
+
+// 1680px
+@mixin desktop-large() {
+  @media (min-width: #{$desktop-lg}px) {
+    @content;
+  }
+}
+
+// 1920px
+@mixin desktop-xlarge() {
+  @media (min-width: #{$desktop-xlg}px) {
+    @content;
+  }
+}
+
+// THE FUNCTION FOR THE FLUID SIZES
+
+// $y1 is Minimum font size
+// $y2 is Maximum font size
+// $x1 is Minimum Screen size
+// $x2 is Maximum Screen size
+// v is viewport size in vw units
+// r is relative size of browser base size, mainly 16px;
+
+@function calculate-value($y1, $y2, $x1, $x2) {
+  $v: calc((100 * ($y2 - $y1)) / ($x2 - $x1));
+  $r: calc(((($x1 * $y2) - ($x2 * $y1)) / ($x1 - $x2)) / 16);
+  $min-value: calc($y1 / 16);
+  $max-value: calc($y2 / 16);
+  $clamp-min: if($max-value < $min-value, $max-value, $min-value);
+  $clamp-max: if($max-value < $min-value, $min-value, $max-value);
+
+  @return clamp(#{$clamp-min}rem,  #{$v}vw + #{$r}rem, #{$clamp-max}rem);
+}
+/* One should use it like this
+
+.example {
+  font-size: calculate-values (12, 20, 768, 1280);
+*/

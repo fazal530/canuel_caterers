@@ -1,0 +1,5 @@
+advanced help settings:
+  show readme: true
+integration:
+  title: Integration with other modules
+  weight: 1
