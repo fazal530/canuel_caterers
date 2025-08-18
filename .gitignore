@@ -1,5 +1,4 @@
-# Ignore DDEV configuration
-.ddev/
+
 
 # Ignore Composer dependencies
 /vendor/
