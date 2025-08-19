@@ -1,12 +1,13 @@
 // IMPORTING ALL THE SCSS FILES.
 
 // 1. BASE FILES
-@import "base/_index";
+@use "base";
 
 // 2. COMPONENTS
-@import "components/_index";
+@use "components";
+
 // 3. LAYOUTS
-@import "layout/_index";
+@use "layout";
 
 // 4. ELEMENTS
-@import "elements/_index";
+@use "elements";

@@ -1,10 +1,12 @@
+@use "mixins";
+
 .container {
   padding-inline: 24px;
   margin-inline: auto;
-  @include tablet {
+  @include mixins.tablet {
     padding-inline: 1rem;
   }
-  @include desktop {
+  @include mixins.desktop {
     max-width: 1180px;
   }
 }

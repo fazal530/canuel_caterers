@@ -70,7 +70,9 @@
         {% for row in column.content %}
           <div{{ row.attributes.addClass(row_classes, options.row_class_default ? 'row-' ~ loop.index) }}>
             {{- row.content -}}
+            <a href="{{/calendar}}" class="btn btn-primary">click</a>
           </div>
+         
         {% endfor %}
       </div>
     {% endfor %}

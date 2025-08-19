@@ -1,0 +1,23 @@
+name: CCMarket
+description: 'A clean starter theme for Drupal 11 with minimal scaffolding.'
+type: theme
+base theme: false
+core_version_requirement: ^11
+# Set a base theme if you want to inherit styles/components.
+# Common options in D11 are Olivero (frontend) and Claro (admin). For a clean slate, omit the base theme.
+# base theme: olivero
+libraries:
+  - ccmarket/global
+regions:
+  header: Header
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  hero: Hero
+  content: Content
+  sidebar: Sidebar
+  featured: Featured
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer: Footer
+# Optional logo and screenshot will be auto-detected if present.

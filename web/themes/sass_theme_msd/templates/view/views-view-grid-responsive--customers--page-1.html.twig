@@ -46,12 +46,7 @@
   <h3>{{ title }}</h3>
 {% endif %}
 <div{{ attributes.addClass(classes).setAttribute('style', responsive_grid_styles|join()) }}>
-<a href="/node/add/child" 
-   class="use-ajax" 
-   data-dialog-type="modal" 
-   data-dialog-options='{"width":1240,"height":550}'>
-  add
-</a>
+
   {% for item in items %}
     <div class="views-view-responsive-grid__item">
       <div class="views-view-responsive-grid__item-inner">

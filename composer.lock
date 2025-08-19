@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cc4e884e1f3ac292b72703c31035a12a",
+    "content-hash": "de5ba2bc9b0a86dde4ef2f3fb30277b8",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -2302,6 +2302,67 @@
             "homepage": "https://www.drupal.org/project/entity_reference_revisions",
             "support": {
                 "source": "https://git.drupalcode.org/project/entity_reference_revisions"
+            }
+        },
+        {
+            "name": "drupal/entityreference_filter",
+            "version": "2.0.0-beta5",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupalcode.org/project/entityreference_filter.git",
+                "reference": "2.0.0-beta5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/entityreference_filter-2.0.0-beta5.zip",
+                "reference": "2.0.0-beta5",
+                "shasum": "66ff254d55e363d11cd0d41a2fa91b6fd9b701c1"
+            },
+            "require": {
+                "drupal/core": "^9.2 || ^10 || ^11"
+            },
+            "require-dev": {
+                "drupal/better_exposed_filters": "^6 || ^7",
+                "drupal/search_api": "^1"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "drupal": {
+                    "version": "2.0.0-beta5",
+                    "datestamp": "1734283509",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Beta releases are not covered by Drupal security advisories."
+                    }
+                },
+                "drush": {
+                    "services": {
+                        "drush.services.yml": "^9 || ^10 || ^11 || ^12"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Maxim Podorov",
+                    "homepage": "https://www.drupal.org/user/2463262",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Maxim Kashuba",
+                    "homepage": "https://www.drupal.org/user/515310",
+                    "email": "mkashuba85@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "Provides views-based filter for entity reference and entity id fields in views.",
+            "homepage": "https://drupal.org/project/entityreference_filter",
+            "support": {
+                "source": "https://git.drupalcode.org/project/entityreference_filter",
+                "issues": "https://www.drupal.org/project/issues/entityreference_filter"
             }
         },
         {
@@ -7934,6 +7995,7 @@
     "stability-flags": {
         "drupal/bef_select": 20,
         "drupal/content_access": 5,
+        "drupal/entityreference_filter": 10,
         "drupal/fullcalendar_view": 20,
         "drupal/inline_entity_form": 5
     },
