@@ -1,0 +1,19 @@
+uuid: de3bab28-72a7-4b46-bb04-350ee21f08f1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_address
+    - node.type.school
+id: node.school.field_address
+field_name: field_address
+entity_type: node
+bundle: school
+label: Address
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

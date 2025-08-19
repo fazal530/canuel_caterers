@@ -1,0 +1,42 @@
+uuid: a1be3593-c941-4966-ac76-b7717fd0d099
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+id: move_view_header_into_view_content
+label: 'Move View Header into View Content'
+code: |
+  // document.addEventListener('DOMContentLoaded', function () {
+  //   const viewCustomers = document.querySelector('.view-customers');
+  //   if (!viewCustomers) return;
+
+  //   const moveHeader = () => {
+  //     const viewHeader = viewCustomers.querySelector('.view-header');
+  //     const gridContainer = viewCustomers.querySelector('.view-content .views-view-responsive-grid');
+  //     if (viewHeader && gridContainer && !gridContainer.contains(viewHeader)) {
+  //       gridContainer.insertBefore(viewHeader, gridContainer.firstChild);
+  //     }
+  //   };
+
+  //   // Run immediately (if grid is already there)
+  //   moveHeader();
+
+  //   // Watch for changes and move instantly when grid is added
+  //   const observer = new MutationObserver(() => {
+  //     moveHeader();
+  //   });
+  //   observer.observe(viewCustomers, { childList: true, subtree: true });
+  // });
+noscript: ''
+noscriptRegion: {  }
+jquery: false
+header: false
+preprocess: true
+conditions:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /customer
+contexts: {  }
+conditions_require_all: true

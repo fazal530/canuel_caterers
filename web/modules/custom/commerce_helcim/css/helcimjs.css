@@ -1,0 +1,213 @@
+/* Helcim Payment Form Styles */
+.helcim-card-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.helcim-card-field {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+}
+
+.helcim-card-field:focus {
+  outline: none;
+  border-color: #007cba;
+  box-shadow: 0 0 5px rgba(0, 124, 186, 0.3);
+}
+
+.helcim-card-field.error {
+  border-color: #d63638;
+  box-shadow: 0 0 5px rgba(214, 54, 56, 0.3);
+}
+
+/* Card number field with card type icons */
+#helcim-card-number {
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 32px 20px;
+  padding-right: 50px;
+}
+
+#helcim-card-number.visa {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iIzAwNTFBNSIvPgo8cGF0aCBkPSJNMTYuNzUgN0gxNC4yNUwxMi41IDE3SDE1TDE2Ljc1IDdaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K');
+}
+
+#helcim-card-number.mastercard {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iI0VCMDAxQiIvPgo8Y2lyY2xlIGN4PSIxNSIgY3k9IjEyIiByPSI3IiBmaWxsPSIjRkY1RjAwIi8+CjxjaXJjbGUgY3g9IjI1IiBjeT0iMTIiIHI9IjciIGZpbGw9IiNGRkY1RjAiLz4KPC9zdmc+Cg==');
+}
+
+#helcim-card-number.amex {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iIzAwNkZDRiIvPgo8cGF0aCBkPSJNMTAgOEgxNEwxNiAxMkwxOCA4SDIyTDIwIDE2SDE2TDE0IDEyTDEyIDE2SDhMMTAgOFoiIGZpbGw9IndoaXRlIi8+Cjwvc3ZnPgo=');
+}
+
+#helcim-card-number.discover {
+  background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCA0MCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjI0IiByeD0iNCIgZmlsbD0iI0ZGNjAwMCIvPgo8Y2lyY2xlIGN4PSIzMiIgY3k9IjEyIiByPSI4IiBmaWxsPSIjRkZBNTAwIi8+Cjwvc3ZnPgo=');
+}
+
+/* Form inline styles for expiry fields */
+.form-inline {
+  display: flex;
+  gap: 10px;
+}
+
+.form-inline .form-item {
+  flex: 1;
+  margin-bottom: 15px;
+}
+
+.form-inline select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  background-color: white;
+}
+
+/* Error messages */
+.helcim-errors {
+  margin-bottom: 15px;
+}
+
+.error-message {
+  padding: 12px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 4px;
+  color: #721c24;
+  font-size: 14px;
+}
+
+/* Processing indicator */
+.helcim-processing {
+  text-align: center;
+  padding: 20px;
+  background-color: #d1ecf1;
+  border: 1px solid #bee5eb;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.helcim-processing.hidden {
+  display: none;
+}
+
+.processing-message {
+  font-size: 16px;
+  color: #0c5460;
+  font-weight: bold;
+}
+
+.processing-message::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+  border: 2px solid #0c5460;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Security badges */
+.helcim-security {
+  text-align: center;
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #e8f5e8;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #2d5a2d;
+}
+
+.helcim-security::before {
+  content: '🔒';
+  margin-right: 5px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .helcim-card-container {
+    margin: 0;
+    padding: 15px;
+    border-radius: 0;
+  }
+  
+  .form-inline {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .helcim-card-field {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Focus states for accessibility */
+.helcim-card-field:focus,
+.form-inline select:focus {
+  outline: 2px solid #007cba;
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.helcim-card-field:disabled,
+.form-inline select:disabled {
+  background-color: #f5f5f5;
+  color: #666;
+  cursor: not-allowed;
+}
+
+/* Payment summary */
+.payment-summary {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 15px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.payment-amount {
+  font-size: 1.2em;
+  color: #2c3e50;
+}
+
+/* Submit button */
+.helcim-submit-btn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.helcim-submit-btn:hover {
+  background: #218838;
+}
+
+.helcim-submit-btn:disabled {
+  background: #6c757d;
+  cursor: not-allowed;
+}

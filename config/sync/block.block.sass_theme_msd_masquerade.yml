@@ -1,0 +1,21 @@
+uuid: 7a7fad1f-a79b-4620-8f14-5c8d5273488c
+langcode: en
+status: true
+dependencies:
+  module:
+    - masquerade
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_masquerade
+theme: sass_theme_msd
+region: pre_header
+weight: 0
+provider: null
+plugin: masquerade
+settings:
+  id: masquerade
+  label: Masquerade
+  label_display: '0'
+  provider: masquerade
+  show_unmasquerade_link: false
+visibility: {  }

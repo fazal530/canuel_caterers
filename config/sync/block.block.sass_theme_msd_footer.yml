@@ -1,0 +1,25 @@
+uuid: a0405189-6b4f-48c8-a4c7-6c10235581c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.footer
+  module:
+    - system
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_footer
+theme: sass_theme_msd
+region: footer
+weight: 0
+provider: null
+plugin: 'system_menu_block:footer'
+settings:
+  id: 'system_menu_block:footer'
+  label: Footer
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

@@ -1,0 +1,81 @@
+<?php
+
+/**
+ * @file
+ * Contains commerce_helcim.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function commerce_helcim_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the commerce_helcim module.
+    case 'help.page.commerce_helcim':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Provides Helcim payment gateway integration for Drupal Commerce using both hosted pages and HelcimJS API.') . '</p>';
+      $output .= '<h3>' . t('Features') . '</h3>';
+      $output .= '<ul>';
+      $output .= '<li>' . t('HelcimJS on-site payment processing') . '</li>';
+      $output .= '<li>' . t('Hosted payment page integration') . '</li>';
+      $output .= '<li>' . t('PCI compliant tokenization') . '</li>';
+      $output .= '<li>' . t('Support for authorize, capture, void, and refund operations') . '</li>';
+      $output .= '<li>' . t('Test mode support') . '</li>';
+      $output .= '</ul>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function commerce_helcim_theme() {
+  return [
+    'commerce_helcim_payment_form' => [
+      'variables' => [
+        'form' => NULL,
+        'gateway_config' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_commerce_checkout_pane_info_alter().
+ */
+function commerce_helcim_commerce_checkout_pane_info_alter(&$panes) {
+  // Debug: Log available payment gateways during checkout
+  \Drupal::logger('commerce_helcim')->info('Checkout panes: @panes', [
+    '@panes' => print_r(array_keys($panes), TRUE),
+  ]);
+}
+
+/**
+ * Implements hook_entity_view_alter().
+ */
+function commerce_helcim_entity_view_alter(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display) {
+  // Debug payment gateways during checkout
+  if ($entity->getEntityTypeId() === 'commerce_order') {
+    $payment_gateway_storage = \Drupal::entityTypeManager()->getStorage('commerce_payment_gateway');
+    $gateways = $payment_gateway_storage->loadMultiple();
+
+    $gateway_info = [];
+    foreach ($gateways as $gateway) {
+      $gateway_info[] = [
+        'id' => $gateway->id(),
+        'label' => $gateway->label(),
+        'plugin_id' => $gateway->getPluginId(),
+        'status' => $gateway->status(),
+      ];
+    }
+
+    \Drupal::logger('commerce_helcim')->info('Available payment gateways: @gateways', [
+      '@gateways' => print_r($gateway_info, TRUE),
+    ]);
+  }
+}

@@ -1,0 +1,28 @@
+uuid: b075a586-739a-49e0-a47a-702e43ac76a3
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.room
+id: node.room.default
+targetEntityType: node
+bundle: room
+mode: default
+content:
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  langcode: true
+  moderation_state: true
+  path: true
+  promote: true
+  status: true
+  sticky: true
+  uid: true

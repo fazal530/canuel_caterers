@@ -1,0 +1,19 @@
+uuid: e2944ae5-5cd1-4e42-bbda-916dfc80131a
+langcode: en
+status: true
+dependencies: {  }
+id: test
+label: test
+weight: null
+plugin: manual
+configuration:
+  display_label: Manual
+  mode: n/a
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  instructions:
+    value: ''
+    format: plain_text
+conditions: {  }
+conditionOperator: AND

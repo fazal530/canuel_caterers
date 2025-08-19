@@ -1,0 +1,25 @@
+uuid: f2234176-23da-4861-8090-7426da1f91d9
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:41edbec0-00a1-4a63-9f89-59f8dfbf4e88'
+  module:
+    - block_content
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_contactinfo
+theme: sass_theme_msd
+region: bottom
+weight: -6
+provider: null
+plugin: 'block_content:41edbec0-00a1-4a63-9f89-59f8dfbf4e88'
+settings:
+  id: 'block_content:41edbec0-00a1-4a63-9f89-59f8dfbf4e88'
+  label: 'Contact Info'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

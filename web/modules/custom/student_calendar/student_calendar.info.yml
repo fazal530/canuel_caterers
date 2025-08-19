@@ -1,0 +1,8 @@
+name: 'Student Calendar'
+type: module
+description: 'Provides a calendar view for students showing menu days based on their school and room.'
+core_version_requirement: ^11
+package: Custom
+dependencies:
+  - drupal:node
+  - drupal:user

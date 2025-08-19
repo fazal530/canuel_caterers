@@ -1,0 +1,11 @@
+uuid: d0122d57-1039-43c2-ae78-8d405f27ff5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.allergens
+id: taxonomy_term.allergens
+target_entity_type_id: taxonomy_term
+target_bundle: allergens
+default_langcode: site_default
+language_alterable: false

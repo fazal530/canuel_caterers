@@ -1,0 +1,22 @@
+uuid: 9122229c-58bb-4f61-b33a-16a091091c4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - sass_theme_msd
+_core:
+  default_config_hash: BiuNZYyLVSO0k0X_MWkay_4soJksK4EaVtQOmBZxtgI
+id: sass_theme_msd_messages
+theme: sass_theme_msd
+region: highlighted
+weight: -8
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  label_display: '0'
+  provider: system
+visibility: {  }

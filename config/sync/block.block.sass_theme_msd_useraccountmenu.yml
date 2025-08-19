@@ -1,0 +1,25 @@
+uuid: 22d680ae-d90b-465d-ae05-b6a16cb18136
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.account
+  module:
+    - system
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_useraccountmenu
+theme: sass_theme_msd
+region: pre_header
+weight: -6
+provider: null
+plugin: 'system_menu_block:account'
+settings:
+  id: 'system_menu_block:account'
+  label: 'User account menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

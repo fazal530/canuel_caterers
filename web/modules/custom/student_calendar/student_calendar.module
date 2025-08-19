@@ -1,0 +1,213 @@
+<?php
+
+/**
+ * @file
+ * Contains student_calendar.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function student_calendar_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.student_calendar':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('The Student Calendar module provides a calendar view for students showing menu days based on their school and room assignments.') . '</p>';
+      $output .= '<h3>' . t('Uses') . '</h3>';
+      $output .= '<dl>';
+      $output .= '<dt>' . t('Viewing Student Calendar') . '</dt>';
+      $output .= '<dd>' . t('Navigate to /calendar to view the student calendar. Select a student from the dropdown to see their menu days.') . '</dd>';
+      $output .= '</dl>';
+      return $output;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function student_calendar_theme() {
+  return [
+    'student_calendar_menu_day' => [
+      'variables' => [
+        'menu_day' => NULL,
+        'date' => NULL,
+        'meal' => NULL,
+        'school' => NULL,
+        'room' => NULL,
+      ],
+    ],
+  ];
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function student_calendar_form_node_menu_day_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Auto-populate date field if coming from calendar
+  $request = \Drupal::request();
+  $date_param = $request->query->get('field_date');
+
+  if ($date_param) {
+    try {
+      // Create DrupalDateTime object from the date parameter
+      $date_object = new \Drupal\Core\Datetime\DrupalDateTime($date_param);
+
+      // Check if field_date exists and set default value
+      if (isset($form['field_date'])) {
+        // Handle different widget types
+        if (isset($form['field_date']['widget'][0]['value'])) {
+          // Standard date widget
+          $form['field_date']['widget'][0]['value']['#default_value'] = $date_object;
+        } elseif (isset($form['field_date']['widget'][0])) {
+          // Alternative widget structure
+          $form['field_date']['widget'][0]['#default_value'] = $date_object;
+        }
+
+        // Set in form state as well
+        $form_state->setValue(['field_date', 0, 'value'], $date_object);
+
+        // Add a message to confirm the date was auto-populated
+        \Drupal::messenger()->addMessage(t('Date automatically set to @date from calendar.', [
+          '@date' => $date_object->format('Y-m-d')
+        ]));
+
+        // Add custom validation to ensure the date persists
+        $form['#validate'][] = 'student_calendar_menu_day_form_validate';
+      }
+
+    } catch (\Exception $e) {
+      // Log error if date parsing fails
+      \Drupal::logger('student_calendar')->error('Failed to parse date parameter: @date. Error: @error', [
+        '@date' => $date_param,
+        '@error' => $e->getMessage()
+      ]);
+    }
+  }
+}
+
+/**
+ * Custom validation for menu_day form to ensure date is set.
+ */
+function student_calendar_menu_day_form_validate(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $request = \Drupal::request();
+  $date_param = $request->query->get('field_date');
+
+  if ($date_param) {
+    try {
+      $date_object = new \Drupal\Core\Datetime\DrupalDateTime($date_param);
+
+      // Ensure the date value is set in form state
+      $current_date = $form_state->getValue(['field_date', 0, 'value']);
+      if (empty($current_date)) {
+        $form_state->setValue(['field_date', 0, 'value'], $date_object);
+      }
+    } catch (\Exception $e) {
+      // Ignore validation errors for date parsing
+    }
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function student_calendar_form_node_menu_day_edit_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Also handle edit form
+  student_calendar_form_node_menu_day_form_alter($form, $form_state, $form_id);
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function student_calendar_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Handle all menu_day forms (create and edit)
+  if (strpos($form_id, 'node_menu_day_') === 0) {
+    $request = \Drupal::request();
+    $date_param = $request->query->get('field_date');
+
+    if ($date_param) {
+      // Add JavaScript to set the date field value
+      $form['#attached']['library'][] = 'student_calendar/calendar_styles';
+      $form['#attached']['drupalSettings']['studentCalendar']['autoDate'] = $date_param;
+
+      // Add custom JavaScript for date population
+      $form['#attached']['library'][] = 'student_calendar/date_autopopulate';
+
+      // Try to set default value directly on the entity
+      $form_object = $form_state->getFormObject();
+      if ($form_object && method_exists($form_object, 'getEntity')) {
+        $entity = $form_object->getEntity();
+        if ($entity && $entity->isNew()) {
+          try {
+            $date_object = new \Drupal\Core\Datetime\DrupalDateTime($date_param);
+            $entity->set('field_date', $date_object->format('Y-m-d'));
+          } catch (\Exception $e) {
+            // Ignore errors
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_prepare_form().
+ */
+function student_calendar_entity_prepare_form(\Drupal\Core\Entity\EntityInterface $entity, $operation, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Auto-populate date for new menu_day entities
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'menu_day' && $entity->isNew()) {
+    $request = \Drupal::request();
+    $date_param = $request->query->get('field_date');
+
+    if ($date_param) {
+      try {
+        $date_object = new \Drupal\Core\Datetime\DrupalDateTime($date_param);
+        $entity->set('field_date', $date_object->format('Y-m-d'));
+
+        // Add a message
+        \Drupal::messenger()->addMessage(t('Date automatically set to @date from calendar.', [
+          '@date' => $date_object->format('Y-m-d')
+        ]));
+
+      } catch (\Exception $e) {
+        \Drupal::logger('student_calendar')->error('Failed to set date in entity_prepare_form: @error', [
+          '@error' => $e->getMessage()
+        ]);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_insert().
+ */
+function student_calendar_entity_insert(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'menu_day') {
+    // Redirect to calendar after creating menu day
+    $request = \Drupal::request();
+    $destination = $request->query->get('destination');
+
+    if ($destination && strpos($destination, '/calendar') !== false) {
+      $response = new \Symfony\Component\HttpFoundation\RedirectResponse($destination);
+      $response->send();
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_update().
+ */
+function student_calendar_entity_update(\Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() === 'node' && $entity->bundle() === 'menu_day') {
+    // Redirect to calendar after updating menu day
+    $request = \Drupal::request();
+    $destination = $request->query->get('destination');
+
+    if ($destination && strpos($destination, '/calendar') !== false) {
+      $response = new \Symfony\Component\HttpFoundation\RedirectResponse($destination);
+      $response->send();
+    }
+  }
+}

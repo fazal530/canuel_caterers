@@ -1,0 +1,15 @@
+student_calendar.calendar:
+  path: '/calendar'
+  defaults:
+    _form: '\Drupal\student_calendar\Form\StudentCalendarForm'
+    _title: 'Student Calendar'
+  requirements:
+    _access: 'TRUE'
+
+student_calendar.admin:
+  path: '/admin/content/calendar'
+  defaults:
+    _form: '\Drupal\student_calendar\Form\StudentCalendarForm'
+    _title: 'Menu Days Calendar'
+  requirements:
+    _permission: 'administer nodes'

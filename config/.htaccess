@@ -1,0 +1,12 @@
+# Deny access to all files in config directory
+<Files "*">
+  Order allow,deny
+  Deny from all
+</Files>
+
+# Additional security headers
+<IfModule mod_headers.c>
+  Header always set X-Content-Type-Options nosniff
+  Header always set X-Frame-Options DENY
+  Header always set X-XSS-Protection "1; mode=block"
+</IfModule>

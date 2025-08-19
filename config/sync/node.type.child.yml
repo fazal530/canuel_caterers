@@ -1,0 +1,18 @@
+uuid: 7e0ce1dc-6618-4448-b6b8-b573ad331e34
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Student
+type: child
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

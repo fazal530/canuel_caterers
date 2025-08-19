@@ -1,0 +1,22 @@
+uuid: 0d5116ee-22cc-414a-ac5c-d7b79b407f3f
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_cart
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_cart
+theme: sass_theme_msd
+region: pre_header
+weight: 0
+provider: null
+plugin: commerce_cart
+settings:
+  id: commerce_cart
+  label: Cart
+  label_display: '0'
+  provider: commerce_cart
+  dropdown: true
+  show_if_empty: true
+visibility: {  }

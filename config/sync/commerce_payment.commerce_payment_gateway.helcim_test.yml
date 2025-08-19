@@ -1,0 +1,21 @@
+uuid: 0ce3c7ea-8734-430d-b9b1-c45e3d37cc2d
+langcode: en
+status: false
+dependencies:
+  module:
+    - commerce_helcim
+id: helcim_test
+label: 'Helcim test'
+weight: null
+plugin: helcim_hosted_pages
+configuration:
+  display_label: Helcim
+  mode: test
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  redirect_method: post
+  secret_hash_key: asdfdsfdsfsdf
+  hosted_page_url: 'http://canuel-caterers.ddev.site/en/admin/commerce/config/store-types/online/edit'
+conditions: {  }
+conditionOperator: AND

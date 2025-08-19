@@ -1,0 +1,59 @@
+uuid: 2b861a39-feb2-40b2-9506-21e052a9ff62
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.menu_day.field_date
+    - field.field.node.menu_day.field_meal
+    - field.field.node.menu_day.field_ref_room
+    - field.field.node.menu_day.field_school_ref
+    - node.type.menu_day
+  module:
+    - datetime
+    - user
+id: node.menu_day.default
+targetEntityType: node
+bundle: menu_day
+mode: default
+content:
+  field_date:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_meal:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 110
+    region: content
+  field_ref_room:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_school_ref:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  langcode: true

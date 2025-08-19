@@ -1,0 +1,7 @@
+uuid: 948e066a-be83-4ec9-be22-4c93aee67349
+langcode: en
+status: true
+dependencies: {  }
+id: diet_type
+label: 'Diet Type'
+elementType: select
