@@ -1,0 +1,20 @@
+student_calendar.calendar:
+  title: 'Student Calendar'
+  route_name: student_calendar.calendar
+  description: 'View student menu calendar'
+  parent: system.admin_content
+  weight: 10
+
+student_calendar.admin:
+  title: 'Menu Days Calendar'
+  route_name: student_calendar.admin
+  description: 'Manage menu days calendar (Admin)'
+  parent: system.admin_content
+  weight: 9
+
+student_calendar.calendar_main:
+  title: 'Calendar'
+  route_name: student_calendar.calendar
+  description: 'View student menu calendar'
+  menu_name: main
+  weight: 10

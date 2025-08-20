@@ -1,0 +1,27 @@
+uuid: e7ef115c-dcdb-4d73-9740-6a8847758832
+langcode: en
+status: false
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - sass_theme_msd
+_core:
+  default_config_hash: AfSUDNgp83BgtFu-6vdnbBScZBJUji6fn_L4_7296DY
+id: sass_theme_msd_main_menu
+theme: sass_theme_msd
+region: header
+weight: -8
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 1
+  expand_all_items: false
+visibility: {  }

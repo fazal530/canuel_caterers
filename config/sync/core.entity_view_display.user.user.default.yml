@@ -1,0 +1,45 @@
+uuid: 088a3d72-d7bc-482a-a0c5-83308f6a86ef
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.user.user.commerce_remote_id
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_last_name
+    - field.field.user.user.user_picture
+  module:
+    - user
+_core:
+  default_config_hash: bwpJf9zeqRiIUuKFXfhYbScg80qePJ23iJa-0JZhaW8
+id: user.user.default
+targetEntityType: user
+bundle: user
+mode: default
+content:
+  field_first_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_last_name:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  masquerade:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  commerce_remote_id: true
+  customer_profiles: true
+  langcode: true
+  member_for: true
+  user_picture: true

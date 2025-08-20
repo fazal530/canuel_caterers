@@ -1,0 +1,21 @@
+uuid: a97b8ed8-c2dd-4d63-9605-9705c5761f2c
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_helcim
+id: helcimjs
+label: HelcimJs
+weight: null
+plugin: helcim_js_working
+configuration:
+  display_label: Helcimjs
+  mode: test
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  api_token: 0eece218c3e3339420c5e3
+  secret_key: b7e1982189c7a81aef1abfaa70df397538f6f626
+  terminal_id: ''
+conditions: {  }
+conditionOperator: AND

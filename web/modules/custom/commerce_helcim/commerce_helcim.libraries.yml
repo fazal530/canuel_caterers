@@ -1,0 +1,10 @@
+helcimjs:
+  js:
+    https://js.helcim.com/v2/helcim.js: { type: external, minified: true }
+    js/helcimjs-integration.js: {}
+  css:
+    theme:
+      css/helcimjs.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

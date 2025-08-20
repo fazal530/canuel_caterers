@@ -1,0 +1,18 @@
+uuid: d3dad943-d7b0-40e4-917d-7a99bae80125
+langcode: en
+status: true
+dependencies:
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_pagetitle
+theme: sass_theme_msd
+region: page_title
+weight: 0
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }

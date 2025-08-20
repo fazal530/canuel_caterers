@@ -1,0 +1,19 @@
+uuid: 9847b301-030e-4f24-8a24-85c92bba0f90
+langcode: en
+status: true
+dependencies: {  }
+id: manual
+label: Manual
+weight: null
+plugin: manual
+configuration:
+  display_label: Manual
+  mode: n/a
+  payment_method_types:
+    - credit_card
+  collect_billing_information: true
+  instructions:
+    value: ''
+    format: plain_text
+conditions: {  }
+conditionOperator: AND

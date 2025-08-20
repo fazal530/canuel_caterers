@@ -1,0 +1,8 @@
+name: Commerce Helcim
+type: module
+description: 'Provides Commerce integration for Helcim Payments.'
+package: Commerce (custom)
+core_version_requirement: ^8.8 || ^9 || ^10 || ^11
+dependencies:
+  - commerce:commerce_payment
+

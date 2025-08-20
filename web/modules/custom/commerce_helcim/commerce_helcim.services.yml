@@ -1,0 +1,4 @@
+services:
+  commerce_helcim.api:
+    class: Drupal\commerce_helcim\HelcimApiService
+    arguments: ['@http_client', '@logger.factory', '@config.factory']

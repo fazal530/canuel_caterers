@@ -1,7 +1,7 @@
 // STATUS MESSAGES
 
 .success-message {
-  @extend .container;
+  @extend .container !optional;
   position: fixed;
   z-index: 50;
   top: 80px;
@@ -34,7 +34,7 @@
 }
 
 .error-message {
-  @extend .container;
+  @extend .container !optional;
   position: fixed;
   z-index: 50;
   top: 80px;
@@ -67,7 +67,7 @@
 }
 
 .info-message {
-  @extend .container;
+  @extend .container !optional;
   position: fixed;
   z-index: 50;
   top: 80px;

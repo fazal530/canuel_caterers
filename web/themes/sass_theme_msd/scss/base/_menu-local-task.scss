@@ -1,3 +1,6 @@
+@use "mixins";
+@use "variables";
+
 .primary-tabs {
   position: absolute;
   z-index: 3;
@@ -19,11 +22,11 @@
       color: white;
       border-top-left-radius: 4px;
       border-top-right-radius: 4px;
-      background: $black-color;
+      background: variables.$black-color;
     }
   }
 
-  @include tablet {
+  @include mixins.tablet {
     position: unset;
     flex-direction: row;
     width: 100%;

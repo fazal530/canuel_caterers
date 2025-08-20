@@ -1,0 +1,68 @@
+{#
+  Theme: CCMarket
+  File: templates/layout/page.html.twig
+#}
+<header class="site-header">
+  <div class="container">
+    <div class="branding" style="display:flex;align-items:center;gap:.75rem;">
+      {% if logo %}
+        <a href="{{ front_page }}" title="{{ 'Home'|t }}" rel="home">
+          <img src="{{ logo }}" alt="{{ 'Home'|t }}" style="height:40px;width:auto;">
+        </a>
+      {% endif %}
+      <h1 class="site-name">
+        <a href="{{ front_page }}" rel="home">{{ site_name }}</a>
+      </h1>
+    </div>
+
+    {% if page.primary_menu %}
+      <nav class="primary-menu" role="navigation" aria-label="{{ 'Primary menu'|t }}">
+        {{ page.primary_menu }}
+      </nav>
+    {% endif %}
+  </div>
+</header>
+
+{% if page.hero %}
+  <section class="hero">
+    <div class="container">
+      {{ page.hero }}
+    </div>
+  </section>
+{% endif %}
+
+<main class="container">
+  <div class="layout">
+    <section class="content card">
+      {{ ccmarket_message }}
+      {{ page.content }}
+    </section>
+
+    {% if page.sidebar %}
+      <aside class="sidebar card">
+        {{ page.sidebar }}
+      </aside>
+    {% endif %}
+  </div>
+
+  {% if page.featured %}
+    <section class="featured" style="margin-top:1rem;">
+      <div class="card">
+        {{ page.featured }}
+      </div>
+    </section>
+  {% endif %}
+</main>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-widgets">
+      {{ page.footer_first }}
+      {{ page.footer_second }}
+      {{ page.footer_third }}
+    </div>
+    <div class="copyright" style="margin-top:1rem;">
+      &copy; {{ "now"|date("Y") }} CCMarket. {{ 'All rights reserved.'|t }}
+    </div>
+  </div>
+</footer>

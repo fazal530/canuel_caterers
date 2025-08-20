@@ -1,0 +1,41 @@
+uuid: f0db68e8-48cf-4cda-ba38-d25b871f3542
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+    - user.role.administrator
+    - user.role.authenticated
+    - user.role.author
+    - user.role.editor
+    - user.role.parent
+  module:
+    - commerce_checkout
+    - commerce_product
+    - contact
+    - filter
+    - masquerade
+    - media
+    - search
+    - system
+_core:
+  default_config_hash: Gl1lr_RJQ9pMz_DZhY6pNX94k874Gqh15Gm8Du1EepQ
+id: anonymous
+label: 'Anonymous user'
+weight: -10
+is_admin: false
+permissions:
+  - 'access checkout'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'masquerade as administrator'
+  - 'masquerade as any user'
+  - 'masquerade as authenticated'
+  - 'masquerade as author'
+  - 'masquerade as editor'
+  - 'masquerade as parent'
+  - 'masquerade as super user'
+  - 'search content'
+  - 'use text format restricted_html'
+  - 'view commerce_product'
+  - 'view media'

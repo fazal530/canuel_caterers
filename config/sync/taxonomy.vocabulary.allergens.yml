@@ -1,0 +1,9 @@
+uuid: 0fa5a2fa-c3bb-4be1-9050-37a159b752d2
+langcode: en
+status: true
+dependencies: {  }
+name: Allergens
+vid: allergens
+description: null
+weight: 0
+new_revision: false

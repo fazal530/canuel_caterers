@@ -1,0 +1,16 @@
+calendar_styles:
+  css:
+    theme:
+      css/student-calendar.css: {}
+  js:
+    js/student-calendar.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.ajax
+
+date_autopopulate:
+  js:
+    js/date-autopopulate.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

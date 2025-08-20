@@ -1,0 +1,9 @@
+uuid: 28e878d9-79c0-45ba-b157-74eb03421810
+langcode: en
+status: true
+dependencies: {  }
+name: Division
+vid: division
+description: null
+weight: 0
+new_revision: false

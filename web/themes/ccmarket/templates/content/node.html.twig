@@ -1,0 +1,15 @@
+{#
+  Theme: CCMarket
+  File: templates/content/node.html.twig
+#}
+<article{{ attributes }}>
+  {% if label and not page %}
+    <h2 class="node__title">
+      <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+    </h2>
+  {% endif %}
+
+  <div class="node__content">
+    {{ content }}
+  </div>
+</article>

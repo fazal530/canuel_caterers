@@ -3,7 +3,8 @@ type: theme
 description: 'A flexible theme with a responsive, mobile-first layout.'
 core_version_requirement: ^10 || ^11
 base theme: umami
-
+libraries:
+  - sass_theme_msd/global
 
 regions:
   pre_header: Pre-header

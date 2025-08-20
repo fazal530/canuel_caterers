@@ -1,3 +1,5 @@
+@use "variables";
+
 .pager {
   margin-top: 52px;
 
@@ -29,7 +31,7 @@
 
       &.is-active {
         a {
-          background-color: $red-color;
+          background-color: variables.$red-color;
           color: white;
         }
       }

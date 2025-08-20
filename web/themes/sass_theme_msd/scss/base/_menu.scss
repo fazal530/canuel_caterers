@@ -1,3 +1,5 @@
+@use "mixins";
+
 $menubar-height: 110px;
 
 body {
@@ -18,7 +20,7 @@ body {
     align-items: center;
     gap: 40px;
 
-    @include tablet {
+    @include mixins.tablet {
       gap: 80px;
 
     }
@@ -35,12 +37,6 @@ body {
       position: absolute;
       top: $menubar-height;
       right: 0;
-
-      @include desktop {
-        justify-self: end;
-        overflow: unset;
-      }
-
       width: 0;
       background-color: white;
       z-index: 10;
@@ -51,15 +47,20 @@ body {
       -moz-box-shadow: -16px 27px 57px -8px rgba(0, 0, 0, 0.75);
       box-shadow: -16px 27px 57px -8px rgba(0, 0, 0, 0.75);
 
+      @include mixins.desktop {
+        justify-self: end;
+        overflow: unset;
+      }
+
       &.menu-opened {
         width: 360px;
 
-        @include tablet {
+        @include mixins.tablet {
           width: 400px;
         }
       }
 
-      @include desktop {
+      @include mixins.desktop {
         display: block;
         position: unset;
         background: unset;
@@ -75,13 +76,6 @@ body {
       }
 
       &>.menu-items {
-        @include desktop {
-          flex-direction: row;
-          align-items: center;
-          gap: 30px;
-          overflow: unset;
-        }
-
         overflow-x: hidden;
         list-style: none;
         margin: 0;
@@ -90,13 +84,20 @@ body {
         display: flex;
         align-items: start;
 
+        @include mixins.desktop {
+          flex-direction: row;
+          align-items: center;
+          gap: 30px;
+          overflow: unset;
+        }
+
         &>.menu-item {
           padding: 30px;
           border-bottom: 1px solid rgb(164, 164, 164);
           width: 100%;
           position: relative;
 
-          @include desktop {
+          @include mixins.desktop {
             width: unset;
             padding: 0;
             border-bottom: 0;
@@ -134,7 +135,7 @@ body {
               top: 40px;
               translate: -50%;
 
-              @include desktop {
+              @include mixins.desktop {
                 top: 65px;
                 translate: -50% 0;
               }
@@ -142,7 +143,7 @@ body {
               left: 50%;
             }
 
-            @include desktop {
+            @include mixins.desktop {
               display: flex;
               height: calc($menubar-height - 10px);
               align-items: center;
@@ -154,7 +155,7 @@ body {
             padding-top: 1rem;
             padding-left: 2rem;
 
-            @include desktop {
+            @include mixins.desktop {
               padding: 8px 1rem;
             }
           }
@@ -162,7 +163,7 @@ body {
           .menu-items {
             display: none;
 
-            @include desktop {
+            @include mixins.desktop {
               position: absolute;
               box-shadow: 1px 7px 17px -2px rgba(0, 0, 0, 0.75);
               -webkit-box-shadow: 1px 7px 17px -2px rgba(0, 0, 0, 0.75);
@@ -206,7 +207,7 @@ body {
       &.closed-menu {
         display: block;
 
-        @include desktop {
+        @include mixins.desktop {
           display: none;
 
         }
@@ -225,7 +226,7 @@ body {
 .overflow-hidden {
   overflow: hidden;
 
-  @include desktop {
+  @include mixins.desktop {
     overflow: unset;
   }
 }
@@ -234,7 +235,7 @@ body {
   position: relative;
 
   &::after {
-    @include desktop {
+    @include mixins.desktop {
       content: unset;
     }
 

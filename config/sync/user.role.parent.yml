@@ -1,0 +1,19 @@
+uuid: 471e0340-e53a-4699-a0bd-7ad77e4b6d47
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.child
+  module:
+    - content_access
+    - node
+id: parent
+label: Parent
+weight: -8
+is_admin: false
+permissions:
+  - 'create child content'
+  - 'delete own child content'
+  - 'edit any child content'
+  - 'edit own child content'
+  - 'grant own content access'

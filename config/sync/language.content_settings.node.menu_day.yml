@@ -1,0 +1,11 @@
+uuid: b80b66bb-9a82-4bc9-8f39-7521ab7e4a47
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.menu_day
+id: node.menu_day
+target_entity_type_id: node
+target_bundle: menu_day
+default_langcode: site_default
+language_alterable: false

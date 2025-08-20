@@ -1,0 +1,11 @@
+uuid: d75a3323-b849-443a-a04b-3c023b6b1b47
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.diet_type
+id: taxonomy_term.diet_type
+target_entity_type_id: taxonomy_term
+target_bundle: diet_type
+default_langcode: site_default
+language_alterable: false

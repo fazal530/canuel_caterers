@@ -1,0 +1,25 @@
+uuid: eb314e04-cebc-4a50-a89b-8a394d608fac
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main-menu
+  module:
+    - system
+  theme:
+    - sass_theme_msd
+id: sass_theme_msd_mainmenu
+theme: sass_theme_msd
+region: pre_header
+weight: -7
+provider: null
+plugin: 'system_menu_block:main-menu'
+settings:
+  id: 'system_menu_block:main-menu'
+  label: 'Main Menu'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: null
+  expand_all_items: false
+visibility: {  }

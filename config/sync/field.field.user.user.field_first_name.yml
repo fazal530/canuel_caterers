@@ -1,0 +1,20 @@
+uuid: a6f7ee37-bed2-4c4f-9990-75cc15aab4a2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_first_name
+  module:
+    - user
+id: user.user.field_first_name
+field_name: field_first_name
+entity_type: user
+bundle: user
+label: 'First Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

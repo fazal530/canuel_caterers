@@ -1,0 +1,9 @@
+uuid: c9a4575d-6e3b-49be-9864-94e06e13d53c
+langcode: en
+status: true
+dependencies: {  }
+name: 'Diet Type'
+vid: diet_type
+description: null
+weight: 0
+new_revision: false

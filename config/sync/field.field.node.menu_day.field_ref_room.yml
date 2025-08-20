@@ -1,0 +1,29 @@
+uuid: 51a4e2eb-4584-4dd7-bebb-c475d161d71a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_ref_room
+    - node.type.menu_day
+    - node.type.room
+id: node.menu_day.field_ref_room
+field_name: field_ref_room
+entity_type: node
+bundle: menu_day
+label: 'Ref Room'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      room: room
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

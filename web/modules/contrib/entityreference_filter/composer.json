@@ -1,0 +1,37 @@
+{
+    "name": "drupal/entityreference_filter",
+    "description": "Provides views-based filter for entity reference and entity id fields in views.",
+    "type": "drupal-module",
+    "homepage": "https://drupal.org/project/entityreference_filter",
+    "authors": [
+        {
+            "name": "Maxim Podorov",
+            "role": "Maintainer"
+        },
+        {
+            "name": "Maxim Kashuba",
+            "email": "mkashuba85@gmail.com",
+            "role": "Maintainer"
+        }
+    ],
+    "support": {
+        "issues": "https://www.drupal.org/project/issues/entityreference_filter",
+        "source": "https://git.drupalcode.org/project/entityreference_filter"
+    },
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "dev",
+    "require": {
+        "drupal/core": "^9.2 || ^10 || ^11"
+    },
+    "require-dev": {
+        "drupal/better_exposed_filters": "^6 || ^7",
+        "drupal/search_api": "^1"
+    },
+    "extra": {
+        "drush": {
+            "services": {
+                "drush.services.yml": "^9 || ^10 || ^11 || ^12"
+            }
+        }
+    }
+}
