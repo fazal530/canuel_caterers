@@ -1,0 +1,95 @@
+<?php
+
+/**
+ * @file
+ * Dependent fields module.
+ */
+
+use Drupal\Core\Entity\EntityFormInterface;
+use Drupal\Core\Entity\EntityInterface;
+use Drupal\Core\Field\EntityReferenceFieldItemListInterface;
+use Drupal\Core\Field\Plugin\Field\FieldWidget\EntityReferenceAutocompleteWidget;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\quickedit\Form\QuickEditFieldForm;
+
+/**
+ * Implements hook_field_widget_single_element_form_alter().
+ */
+function dependent_fields_field_widget_single_element_form_alter(&$element, FormStateInterface $form_state, $context) {
+  $form_object = $form_state->getFormObject();
+  // Establish whether we're in a normal EntityForm context or an inline
+  // QuickeditFieldForm context and retrieve the entity from the respectively
+  // appropriate place.
+  if (isset($context['items']) && $context['items'] instanceof EntityReferenceFieldItemListInterface) {
+    /**
+     * @var \Drupal\Core\Field\EntityReferenceFieldItemListInterface $items
+     */
+    $items = $context['items'];
+    $entity = $items->getEntity();
+  }
+  elseif ($form_object instanceof EntityFormInterface) {
+    $entity = $form_object->getEntity();
+  }
+  else {
+    // @phpstan-ignore-next-line
+    if ($form_object instanceof QuickEditFieldForm) {
+      // @todo consider removing QuickEditFieldForm (it's no longer in core).
+      $entity = $form_state->getBuildInfo()['args'][0];
+    }
+    else {
+      $entity = new stdClass();
+    }
+  }
+
+  if ($entity instanceof EntityInterface) {
+    // Check if the field is a dependent field.
+    /** @var \Drupal\Core\Field\FieldItemList $items */
+    $items = $context['items'];
+    $current_field = $items->getFieldDefinition()->getName();
+
+    // Check if field is configured as parent of one dependent field.
+    if (method_exists($entity, 'getFieldDefinitions')) {
+      $fields_definitions = $entity->getFieldDefinitions();
+
+      // Check if current field has children.
+      $child_fields = [];
+      foreach ($fields_definitions as $field_name => $field_definition) {
+        $handler = $field_definition->getSetting('handler');
+        if ($handler == 'dependent_fields_selection') {
+          $handle_settings = $field_definition->getSetting('handler_settings');
+          $parent_field = $handle_settings['dependent_fields_view']['parent_field'];
+          $has_children = ($parent_field == $current_field);
+
+          if ($has_children) {
+            $child_fields[] = $field_name;
+          }
+        }
+      }
+
+      // Add ajax to parent field.
+      if (count($child_fields)) {
+        $children = $element['#ajax']['dependent_field_children'] ?? [];
+        $children += $child_fields;
+
+        $ajax_definition = [
+          'callback' => '\Drupal\dependent_fields\Plugin\EntityReferenceSelection\ViewsSelection::updateDependentField',
+          'event' => 'change',
+          'progress' => [
+            'type' => 'throbber',
+          ],
+          'dependent_field_children' => $children,
+        ];
+
+        if (!empty($context['widget']) && $context['widget'] instanceof EntityReferenceAutocompleteWidget && !empty($element['target_id'])) {
+          $ajax_definition['event'] = 'autocompleteclose';
+          $element['target_id']['#ajax'] = $ajax_definition;
+        }
+        else {
+          $element['#ajax'] = $ajax_definition;
+        }
+
+        $element['#attached']['library'][] = 'dependent_fields/dependentField';
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+name: 'Dependent fields: test dependent fields view'
+description: 'See Drupal\Tests\dependent_fields\FunctionalJavascript\DependentFieldsView. Tt sets up fields in a node.'
+package: Workflow
+
+type: module
+core_version_requirement: ^8.9 || ^9 || ^10 || ^11
+
+dependencies:
+  - dependent_fields:dependent_fields
+  - drupal:node
+  - drupal:taxonomy
+  - drupal:views
+
+# Information added by Drupal.org packaging script on 2025-08-05
+version: '1.0.5'
+project: 'dependent_fields'
+datestamp: 1754417006

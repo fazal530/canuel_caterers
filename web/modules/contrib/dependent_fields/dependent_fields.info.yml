@@ -1,0 +1,10 @@
+type: module
+name: Dependent fields
+description: 'Define and configure dependent fields.'
+core_version_requirement: ^8.9 || ^9 || ^10 || ^11
+package: 'Fields'
+
+# Information added by Drupal.org packaging script on 2025-08-05
+version: '1.0.5'
+project: 'dependent_fields'
+datestamp: 1754417006

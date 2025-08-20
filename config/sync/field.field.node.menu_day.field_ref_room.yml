@@ -5,7 +5,6 @@ dependencies:
   config:
     - field.storage.node.field_ref_room
     - node.type.menu_day
-    - node.type.room
 id: node.menu_day.field_ref_room
 field_name: field_ref_room
 entity_type: node
@@ -17,13 +16,12 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:node'
+  handler: dependent_fields_selection
   handler_settings:
-    target_bundles:
-      room: room
-    sort:
-      field: _none
-      direction: ASC
-    auto_create: false
-    auto_create_bundle: ''
+    dependent_fields_view:
+      view_name: rooms_list_in_school
+      display_name: entity_reference_1
+      parent_field: field_school_ref
+      reference_parent_by_uuid: false
+      arguments: {  }
 field_type: entity_reference
