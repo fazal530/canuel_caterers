@@ -19,7 +19,6 @@
         "cweagans/composer-patches": "~1.0",
         "drupal/admin_toolbar": "^3.6",
         "drupal/asset_injector": "^2.21",
-        "drupal/bef_select": "2.0.x-dev",
         "drupal/better_exposed_filters": "^6.0",
         "drupal/commerce": "^3.1",
         "drupal/content_access": "^2.1@RC",
@@ -64,9 +63,6 @@
             }
         },
         "patches": {
-            "drupal/bef_select": {
-                "Upgrade to BEF 7 (https://www.drupal.org/project/bef_select/issues/3484239)": "https://www.drupal.org/files/issues/2024-03-16/bef_select.2.0.0.rector.patch"
-            },
             "drupal/better_exposed_filters": {
                 "Automated Drupal 11 compatibility fixes for better_exposed_filters (https://www.drupal.org/project/better_exposed_filters/issues/3428958)": "https://www.drupal.org/files/issues/2024-03-16/better_exposed_filters.6.0.3.rector.patch"
             }
