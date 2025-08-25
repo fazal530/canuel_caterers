@@ -68,6 +68,7 @@ class StudentCalendarForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state) {
     // Attach CSS and JS libraries
     $form['#attached']['library'][] = 'student_calendar/calendar_styles';
+    $form['#attached']['library'][] = 'core/drupal.dialog.ajax';
 
     // Get current user's child nodes
     $child_options = $this->getCurrentUserChildren();
@@ -121,12 +122,22 @@ class StudentCalendarForm extends FormBase {
     $default_value = '';
     if ($auto_select_id && isset($child_options[$auto_select_id])) {
       $default_value = $auto_select_id;
+    } elseif ($is_admin) {
+      // Default to "All Students" for admins when no auto-select ID
+      $default_value = 'all';
     }
+
+    // Add "All Students" option for admins
+    $select_options = [];
+    if ($is_admin) {
+      $select_options['all'] = $this->t('All Students');
+    }
+    $select_options += $child_options;
 
     $form['student_select'] = [
       '#type' => 'select',
       '#title' => $this->t('Select Student'),
-      '#options' => $child_options,
+      '#options' => $select_options,
       '#empty_option' => $this->t('- Select a student -'),
       '#default_value' => $default_value,
       '#weight' => -10,
@@ -214,9 +225,24 @@ class StudentCalendarForm extends FormBase {
     ];
 
     // Add student title and access info above calendar
-    if ($selected_child_id && $selected_child_id !== 'all') {
-      $child_node = Node::load($selected_child_id);
-      if ($child_node) {
+    if ($selected_child_id) {
+      if ($selected_child_id === 'all') {
+        // Show title for all students view
+        $form['student_info']['title'] = [
+          '#markup' => '<h3 class="student-calendar-title">' .
+            $this->t('Menu Calendar - All Students') .
+            '</h3>',
+        ];
+
+        $form['student_info']['admin_info'] = [
+          '#markup' => '<div class="access-restriction-info">' .
+            '<p><strong>' . $this->t('Admin View:') . '</strong> ' .
+            $this->t('You are viewing all menu days. You can add, edit, and delete menu items.') .
+            '</p></div>',
+        ];
+      } else {
+        $child_node = Node::load($selected_child_id);
+        if ($child_node) {
         // Calculate next Monday for access info
         $today = new \DateTime();
         $next_monday = clone $today;
@@ -243,6 +269,7 @@ class StudentCalendarForm extends FormBase {
             ]) . '</p>' .
             '</div>',
         ];
+        }
       }
     }
 
@@ -566,22 +593,6 @@ class StudentCalendarForm extends FormBase {
 
       $day_content = '<div class="day-number">' . $day_number . '</div>';
 
-      // Add plus icon for admins to create new menu days
-      if ($can_create_menu_days && $is_current_month) {
-        $add_url = Url::fromRoute('node.add', ['node_type' => 'menu_day'], [
-          'query' => [
-            'field_date' => $date_key,
-            'destination' => \Drupal::request()->getRequestUri(),
-          ],
-        ]);
-        $day_content .= '<div class="add-menu-day">' .
-          '<a href="' . $add_url->toString() . '" class="add-menu-btn" title="' .
-          $this->t('Add menu day for @date', ['@date' => $current_date->format('M j, Y')]) . '">' .
-          '<span class="plus-icon">+</span>' .
-          '</a>' .
-          '</div>';
-      }
-
       // Add menu days for this date
       if (isset($menu_days_by_date[$date_key])) {
         $day_content .= '<div class="menu-items">';
@@ -614,6 +625,51 @@ class StudentCalendarForm extends FormBase {
           }
         }
         $day_content .= '</div>';
+      }
+
+      // Add admin action buttons for current month
+      if ($can_create_menu_days && $is_current_month) {
+        $add_url = Url::fromRoute('node.add', ['node_type' => 'menu_day'], [
+          'query' => [
+            'field_date' => $date_key,
+            'destination' => \Drupal::request()->getRequestUri(),
+          ],
+        ]);
+
+        $admin_actions = '<div class="admin-day-actions">';
+
+        // Add button
+        $admin_actions .= '<a href="' . $add_url->toString() . '" class="action-btn add-btn use-ajax" ' .
+          'data-dialog-type="modal" ' .
+          'data-dialog-options=\'{"width":"90%","height":"90%","title":"Add Menu Day for ' . $current_date->format('M j, Y') . '"}\' ' .
+          'title="' . $this->t('Add menu day for @date', ['@date' => $current_date->format('M j, Y')]) . '">+</a>';
+
+        // Edit/Delete buttons for existing menu days
+        if (isset($menu_days_by_date[$date_key])) {
+          foreach ($menu_days_by_date[$date_key] as $menu_day) {
+            $current_uri = \Drupal::request()->getRequestUri();
+
+            $edit_url = Url::fromRoute('entity.node.edit_form', ['node' => $menu_day->id()], [
+              'query' => ['destination' => $current_uri],
+            ]);
+            $delete_url = Url::fromRoute('entity.node.delete_form', ['node' => $menu_day->id()], [
+              'query' => ['destination' => $current_uri],
+            ]);
+
+            $admin_actions .= '<a href="' . $edit_url->toString() . '" class="action-btn edit-btn use-ajax" ' .
+              'data-dialog-type="modal" ' .
+              'data-dialog-options=\'{"width":"90%","height":"90%","title":"Edit Menu Day"}\' ' .
+              'title="Edit ' . $menu_day->getTitle() . '">✏️</a>';
+
+            $admin_actions .= '<a href="' . $delete_url->toString() . '" class="action-btn delete-btn use-ajax" ' .
+              'data-dialog-type="modal" ' .
+              'data-dialog-options=\'{"width":"600px","height":"400px","title":"Delete Menu Day"}\' ' .
+              'title="Delete ' . $menu_day->getTitle() . '">🗑️</a>';
+          }
+        }
+
+        $admin_actions .= '</div>';
+        $day_content .= $admin_actions;
       }
 
       $calendar['grid']['days']['day_' . $day_count] = [
@@ -795,6 +851,51 @@ class StudentCalendarForm extends FormBase {
           }
         }
         $day_content .= '</div>';
+      }
+
+      // Add admin action buttons for current month
+      if ($is_current_month) {
+        $add_url = Url::fromRoute('node.add', ['node_type' => 'menu_day'], [
+          'query' => [
+            'field_date' => $date_key,
+            'destination' => \Drupal::request()->getRequestUri(),
+          ],
+        ]);
+
+        $admin_actions = '<div class="admin-day-actions">';
+
+        // Add button
+        $admin_actions .= '<a href="' . $add_url->toString() . '" class="action-btn add-btn use-ajax" ' .
+          'data-dialog-type="modal" ' .
+          'data-dialog-options=\'{"width":"90%","height":"90%","title":"Add Menu Day for ' . $current_date->format('M j, Y') . '"}\' ' .
+          'title="' . $this->t('Add menu day for @date', ['@date' => $current_date->format('M j, Y')]) . '">+</a>';
+
+        // Edit/Delete buttons for existing menu days
+        if (isset($menu_days_by_date[$date_key])) {
+          foreach ($menu_days_by_date[$date_key] as $menu_day) {
+            $current_uri = \Drupal::request()->getRequestUri();
+
+            $edit_url = Url::fromRoute('entity.node.edit_form', ['node' => $menu_day->id()], [
+              'query' => ['destination' => $current_uri],
+            ]);
+            $delete_url = Url::fromRoute('entity.node.delete_form', ['node' => $menu_day->id()], [
+              'query' => ['destination' => $current_uri],
+            ]);
+
+            $admin_actions .= '<a href="' . $edit_url->toString() . '" class="action-btn edit-btn use-ajax" ' .
+              'data-dialog-type="modal" ' .
+              'data-dialog-options=\'{"width":"90%","height":"90%","title":"Edit Menu Day"}\' ' .
+              'title="Edit ' . $menu_day->getTitle() . '">✏️</a>';
+
+            $admin_actions .= '<a href="' . $delete_url->toString() . '" class="action-btn delete-btn use-ajax" ' .
+              'data-dialog-type="modal" ' .
+              'data-dialog-options=\'{"width":"600px","height":"400px","title":"Delete Menu Day"}\' ' .
+              'title="Delete ' . $menu_day->getTitle() . '">🗑️</a>';
+          }
+        }
+
+        $admin_actions .= '</div>';
+        $day_content .= $admin_actions;
       }
 
       $calendar['grid']['days']['day_' . $day_count] = [

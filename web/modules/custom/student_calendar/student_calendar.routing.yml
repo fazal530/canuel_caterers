@@ -13,3 +13,30 @@ student_calendar.admin:
     _title: 'Menu Days Calendar'
   requirements:
     _permission: 'administer nodes'
+
+student_calendar.refresh_calendar:
+  path: '/student-calendar/refresh'
+  defaults:
+    _controller: '\Drupal\student_calendar\Controller\CalendarAjaxController::refreshCalendar'
+  requirements:
+    _permission: 'access content'
+  options:
+    _ajax: TRUE
+
+student_calendar.node_save_success:
+  path: '/student-calendar/node-save-success'
+  defaults:
+    _controller: '\Drupal\student_calendar\Controller\CalendarAjaxController::nodeSaveSuccess'
+  requirements:
+    _permission: 'access content'
+  options:
+    _ajax: TRUE
+
+student_calendar.node_delete_success:
+  path: '/student-calendar/node-delete-success'
+  defaults:
+    _controller: '\Drupal\student_calendar\Controller\CalendarAjaxController::nodeDeleteSuccess'
+  requirements:
+    _permission: 'access content'
+  options:
+    _ajax: TRUE

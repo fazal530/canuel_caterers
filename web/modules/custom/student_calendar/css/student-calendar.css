@@ -618,3 +618,94 @@
 .admin-calendar .add-menu-btn:hover {
   background: #e8630a;
 }
+
+/* Admin Day Actions */
+.admin-day-actions {
+  display: flex;
+  gap: 3px;
+  margin-top: 5px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 18px;
+  font-size: 12px;
+  border-radius: 3px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.action-btn.add-btn {
+  background: #27ae60;
+  color: white;
+}
+
+.action-btn.add-btn:hover {
+  background: #2ecc71;
+  color: white;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
+.action-btn.edit-btn {
+  background: #3498db;
+  color: white;
+}
+
+.action-btn.edit-btn:hover {
+  background: #2980b9;
+  color: white;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
+.action-btn.delete-btn {
+  background: #e74c3c;
+  color: white;
+}
+
+.action-btn.delete-btn:hover {
+  background: #c0392b;
+  color: white;
+  text-decoration: none;
+  transform: scale(1.1);
+}
+
+/* Remove old menu item action styles */
+.menu-item {
+  position: relative;
+}
+
+/* Clean menu item styling without action buttons */
+.menu-item .menu-day-link {
+  padding: 2px 4px;
+}
+
+/* Modal dialog improvements */
+.ui-dialog .ui-dialog-content {
+  padding: 20px;
+}
+
+.ui-dialog .ui-dialog-titlebar {
+  background: #3498db;
+  color: white;
+  border: none;
+}
+
+.ui-dialog .ui-dialog-titlebar-close {
+  background: transparent;
+  border: none;
+  color: white;
+}
+
+.ui-dialog .ui-dialog-titlebar-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}

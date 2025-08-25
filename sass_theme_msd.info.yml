@@ -1,0 +1,30 @@
+name: Simple SASS theme
+type: theme
+base theme: false
+description: A flexible theme with a responsive, mobile-first layout.
+package: Custom
+core: 8.x
+core_version_requirement: ^8 || ^9 || ^10 || ^11
+libraries:
+  - sass_theme_msd/global
+  - sass_theme_msd/slick
+  - sass_theme_msd/fontawesome
+regions:
+  menubar: "Menu bar"
+  header: Header
+  primary_menu: "Primary menu"
+  secondary_menu: "Secondary menu"
+  page_top: "Page top"
+  page_bottom: "Page bottom"
+  highlighted: Highlighted
+  featured_top: "Featured top"
+  breadcrumb: Breadcrumb
+  content: Content
+  sidebar_first: "Sidebar first"
+  sidebar_second: "Sidebar second"
+  footer_first: "Footer first"
+  footer_second: "Footer second"
+  footer_third: "Footer third"
+  footer_fourth: "Footer fourth"
+  footer_fifth: "Footer fifth"
+  
