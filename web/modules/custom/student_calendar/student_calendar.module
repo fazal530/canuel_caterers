@@ -6,6 +6,12 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\CloseModalDialogCommand;
+use Drupal\Core\Ajax\MessageCommand;
+use Drupal\Core\Ajax\RedirectCommand;
 
 /**
  * Implements hook_help().
@@ -70,9 +76,9 @@ function student_calendar_form_node_menu_day_form_alter(&$form, \Drupal\Core\For
         $form_state->setValue(['field_date', 0, 'value'], $date_object);
 
         // Add a message to confirm the date was auto-populated
-        \Drupal::messenger()->addMessage(t('Date automatically set to @date from calendar.', [
-          '@date' => $date_object->format('Y-m-d')
-        ]));
+        // \Drupal::messenger()->addMessage(t('Date automatically set to @date from calendar.', [
+        //   '@date' => $date_object->format('Y-m-d')
+        // ]));
 
         // Add custom validation to ensure the date persists
         $form['#validate'][] = 'student_calendar_menu_day_form_validate';
@@ -149,6 +155,14 @@ function student_calendar_form_alter(&$form, \Drupal\Core\Form\FormStateInterfac
         }
       }
     }
+
+    // Add custom submit handler for modal forms
+    $form['actions']['submit']['#submit'][] = 'student_calendar_modal_form_submit';
+  }
+
+  // Handle delete form
+  if ($form_id == 'node_menu_day_delete_form') {
+    $form['actions']['submit']['#submit'][] = 'student_calendar_modal_delete_submit';
   }
 }
 
@@ -167,9 +181,9 @@ function student_calendar_entity_prepare_form(\Drupal\Core\Entity\EntityInterfac
         $entity->set('field_date', $date_object->format('Y-m-d'));
 
         // Add a message
-        \Drupal::messenger()->addMessage(t('Date automatically set to @date from calendar.', [
-          '@date' => $date_object->format('Y-m-d')
-        ]));
+        // \Drupal::messenger()->addMessage(t('Date automatically set to @date from calendar.', [
+        //   '@date' => $date_object->format('Y-m-d')
+        // ]));
 
       } catch (\Exception $e) {
         \Drupal::logger('student_calendar')->error('Failed to set date in entity_prepare_form: @error', [
@@ -209,5 +223,85 @@ function student_calendar_entity_update(\Drupal\Core\Entity\EntityInterface $ent
       $response = new \Symfony\Component\HttpFoundation\RedirectResponse($destination);
       $response->send();
     }
+  }
+}
+
+/**
+ * Custom submit handler for modal menu day forms.
+ */
+function student_calendar_modal_form_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $request = \Drupal::request();
+
+  // Check if this is an AJAX request
+  if ($request->isXmlHttpRequest()) {
+    // For AJAX requests, use AJAX response
+    $response = new \Drupal\Core\Ajax\AjaxResponse();
+
+    // Close the modal
+    $response->addCommand(new \Drupal\Core\Ajax\CloseModalDialogCommand());
+
+    // Add success message
+    $message = t('Menu day saved successfully.');
+    $response->addCommand(new \Drupal\Core\Ajax\MessageCommand($message, NULL, ['type' => 'status']));
+
+    // Refresh the page
+    $response->addCommand(new \Drupal\Core\Ajax\RedirectCommand('/calendar'));
+
+    $form_state->setResponse($response);
+  } else {
+    // For regular form submissions, redirect normally
+    $destination = $request->query->get('destination');
+    if ($destination && strpos($destination, '/calendar') !== false) {
+      // Clean the destination URL of AJAX parameters
+      $clean_destination = preg_replace('/[?&]ajax_form=1/', '', $destination);
+      $clean_destination = preg_replace('/[?&]_wrapper_format=drupal_ajax/', '', $clean_destination);
+      $destination_url = \Drupal\Core\Url::fromUserInput($clean_destination);
+      $form_state->setRedirectUrl($destination_url);
+    } else {
+      $calendar_url = \Drupal\Core\Url::fromRoute('student_calendar.calendar');
+      $form_state->setRedirectUrl($calendar_url);
+    }
+
+    \Drupal::messenger()->addMessage(t('Menu day saved successfully.'));
+  }
+}
+
+/**
+ * Custom submit handler for modal delete forms.
+ */
+function student_calendar_modal_delete_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $request = \Drupal::request();
+
+  // Check if this is an AJAX request
+  if ($request->isXmlHttpRequest()) {
+    // For AJAX requests, use AJAX response
+    $response = new \Drupal\Core\Ajax\AjaxResponse();
+
+    // Close the modal
+    $response->addCommand(new \Drupal\Core\Ajax\CloseModalDialogCommand());
+
+    // Add success message
+    $message = t('Menu day deleted successfully.');
+    $response->addCommand(new \Drupal\Core\Ajax\MessageCommand($message, NULL, ['type' => 'status']));
+
+    // Refresh the page
+    $response->addCommand(new \Drupal\Core\Ajax\RedirectCommand('/calendar'));
+
+    $form_state->setResponse($response);
+  } else {
+    // For regular form submissions, redirect normally
+    $destination = $request->query->get('destination');
+    if ($destination && strpos($destination, '/calendar') !== false) {
+      // Clean the destination URL of AJAX parameters
+      $clean_destination = preg_replace('/[?&]ajax_form=1/', '', $destination);
+      $clean_destination = preg_replace('/[?&]_wrapper_format=drupal_ajax/', '', $clean_destination);
+      $destination_url = \Drupal\Core\Url::fromUserInput($clean_destination);
+      $form_state->setRedirectUrl($destination_url);
+    } else {
+      $calendar_url = \Drupal\Core\Url::fromRoute('student_calendar.calendar');
+      $form_state->setRedirectUrl($calendar_url);
+    }
+
+    \Drupal::messenger()->addMessage(t('Menu day deleted successfully.'));
   }
 }

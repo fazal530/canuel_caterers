@@ -1,15 +1,14 @@
-uuid: d382adf8-6cb1-484a-9b1e-ffa2a0ae5e89
 langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.node.field_ref_room
-    - node.type.child
-id: node.child.field_ref_room
-field_name: field_ref_room
+    - field.storage.node.field_user1
+    - node.type.nodetype1
+id: node.nodetype1.field_user1
+field_name: field_user1
 entity_type: node
-bundle: child
-label: 'Ref Room'
+bundle: nodetype1
+label: user1
 description: ''
 required: false
 translatable: false
@@ -19,9 +18,9 @@ settings:
   handler: dependent_fields_selection
   handler_settings:
     dependent_fields_view:
-      view_name: rooms_list_in_school
+      view_name: view1
       display_name: entity_reference_1
-      parent_field: field_school_ref
-      reference_parent_by_uuid: false
       arguments: {  }
+      parent_field: field_termfield1
+      reference_parent_by_uuid: false
 field_type: entity_reference

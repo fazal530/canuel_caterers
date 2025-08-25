@@ -1,0 +1,43 @@
+# Main theme library.
+slick:
+  js:
+    libs/slick.min.js: {}
+    https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js: {}
+
+  css:
+    component:
+      libs/slick-theme.css: {}
+      libs/slick.css: {}
+global:
+  js:
+    js/toggleMenu.js: {}
+    js/local-menu.js: {}
+    js/sliders.js: {}
+    js/formred.js: {}
+    js/toggleform.js: {}
+    js/scroll.js: {}
+
+   
+  
+
+
+  dependencies:
+    - core/drupal
+    - core/jquery
+  css:
+    base:
+      css/style.css: {}
+      css/custom.css: {}
+fontawesome:
+  version: 5.15.4
+  css:
+    theme:
+      libs/fontawesome/css/all.css: {}
+
+  custom_modal:
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+    - core/drupal.dialog
+    - core/drupal.dialog.ajax

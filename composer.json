@@ -26,6 +26,7 @@
         "drupal/core-project-message": "^11.2",
         "drupal/core-recipe-unpack": "^11.2",
         "drupal/core-recommended": "^11.2",
+        "drupal/dependent_fields": "^1.0",
         "drupal/entityreference_filter": "^2.0@beta",
         "drupal/fullcalendar_view": "5.x-dev@dev",
         "drupal/inline_entity_form": "^3.0@RC",
